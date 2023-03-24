@@ -41,7 +41,8 @@ router.post('/', (req, res) => { // posts a new member to the db
         })
     }
     members.push(newMember);
-    res.json(members);
+    // res.json(members); // returns json to the client
+    res.redirect('/'); // redirects to the home page
 });
 
 // curl -X PUT -d '{"name" : "Jake", "email" : "jake@gmail.com"}' -H 'Content-Type: application/json' http://localhost:5000/api/members/1
