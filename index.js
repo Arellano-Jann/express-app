@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const logger = require('./middleware/logger');
 const exphbs = require('express-handlebars'); // note that you should only really do an API or a server side app with templates. not both. you should use a front end framework with the API
+// but you can have both because you might have a regular app and then a form could be changing a database so in that case, you COULD have both etc
+const members = require('./Members');
 
 const app = express();
     
@@ -11,7 +13,10 @@ app.use(logger); // use the logger middleware
 app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' })); // Handlebars Middleware
 app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => res.render('index')); // renders the index.handlebars file
+app.get('/', (req, res) => res.render('index', {
+    title: 'Member App', // this is rendered in the index.hbs file with {{title}}
+    members // {{members}}
+})); // renders the index.handlebars file
 
 // app.get('/', (req, res) => {
 //     console.log('Get Request');
