@@ -17,6 +17,11 @@ app.get('/api/members', (req,res) => { // rest API - get
     res.json(members); // sends the members array as a json object
 });
 
+app.get('/api/members/:id', (req, res) => {
+    // res.send(req.params.id); // sends the id parameter
+    res.json(members.filter((member) => member.id === parseInt(req.params.id))); // parseInt turns the string into an int because member.id is a number. === means both types have to be the same
+})
+
 
 app.use(express.static(path.join(__dirname, 'public'))); // gets the current directory and joins it with the public folder to set the static path as the public folder
 
