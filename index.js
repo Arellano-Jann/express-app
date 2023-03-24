@@ -12,6 +12,8 @@ app.use(logger); // use the logger middleware
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 // })
 
+app.use(express.json()); // handles raw json
+app.use(express.urlencoded({ extended: false })); // handles url encoded data
 
 app.use(express.static(path.join(__dirname, 'public'))); // gets the current directory and joins it with the public folder to set the static path as the public folder
 
