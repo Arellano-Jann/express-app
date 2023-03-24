@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const members = require('./Members');
 
 const app = express();
 
@@ -9,20 +10,7 @@ const app = express();
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 // })
 
-const members = [
-    {
-        id: 1,
-        name: 'John Doe',
-        email: 'asd@gmail.com',
-        status: 'active'
-    },
-    {
-        id: 2,
-        name: 'Bob Williams',
-        email: 'bob@gmail.com',
-        status: 'inactive'
-    },
-];
+
 
 app.get('/api/members', (req,res) => { // rest API - get
      res.json(members); // sends the members array as a json object
