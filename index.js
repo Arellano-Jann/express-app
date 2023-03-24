@@ -12,6 +12,9 @@ app.use(logger); // use the logger middleware
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 // })
 
+
+app.use(express.static(path.join(__dirname, 'public'))); // gets the current directory and joins it with the public folder to set the static path as the public folder
+
 // Members API Routes
 app.use('/api/members', require('./routes/api/members')); // auto uses the /api/members route in the members.js router file
 
