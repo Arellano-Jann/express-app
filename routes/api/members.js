@@ -61,6 +61,21 @@ router.put('/:id', (req, res) => { // updates a member
             msg: `Member with id ${req.params.id} not found`
         })
     }
+});
+
+router.delete('/:id', (req, res) => {
+    const found = members.some((member) => member.id === parseInt(req.params.id));
+
+    if (found){
+        res.json({
+            msg: 'Member deleted',
+            members: members.filter((member) => member.id !== parseInt(req.params.id))
+        });
+    } else{
+        res.status(400).json({
+            msg: `Member with id ${req.params.id} not found` 
+        })
+    }
 })
 
 module.exports = router; // router has the get methods? and it exports it?
