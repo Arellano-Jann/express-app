@@ -3,11 +3,13 @@ const router = express.Router();
 const members = require('../../Members');
 const uuid = require('uuid')
 
-
+// curl -H 'Content-Type: application/json' http://localhost:5000/api/members/
+// curl http://localhost:5000/api/members/
 router.get('/', (req,res) => { // rest API - GET all members
     res.json(members); // sends the members array as a json object
 });
 
+// curl http://localhost:5000/api/members/1
 router.get('/:id', (req, res) => { // gets a specific member by id
     // res.send(req.params.id); // sends the id parameter
 
@@ -23,6 +25,7 @@ router.get('/:id', (req, res) => { // gets a specific member by id
     }
 })
 
+// curl -d '{"name" : "Jake", "email" : "jake@gmail.com"}' -H 'Content-Type: application/json' http://localhost:5000/api/members
 router.post('/', (req, res) => { // posts a new member to the db
     const newMember = {
         id: uuid.v4(), 
@@ -40,6 +43,7 @@ router.post('/', (req, res) => { // posts a new member to the db
     res.json(members);
 });
 
+// curl -X PUT -d '{"name" : "Jake", "email" : "jake@gmail.com"}' -H 'Content-Type: application/json' http://localhost:5000/api/members/1
 router.put('/:id', (req, res) => { // updates a member
     const found = members.some((member => member.id === parseInt(req.params.id)));
 
@@ -63,7 +67,8 @@ router.put('/:id', (req, res) => { // updates a member
     }
 });
 
-router.delete('/:id', (req, res) => {
+// curl -X DELETE -H 'Content-Type: application/json' http://localhost:5000/api/members/1
+router.delete('/:id', (req, res) => { // deletes a member
     const found = members.some((member) => member.id === parseInt(req.params.id));
 
     if (found){
