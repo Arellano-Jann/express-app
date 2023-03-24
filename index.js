@@ -1,14 +1,10 @@
 const express = require('express');
 const path = require('path');
-const moment = require('moment');
 const members = require('./Members');
+const logger = require('./middleware/logger');
 
 const app = express();
     
-const logger = (req, res, next) => { // logger middleware. next is a callback that moves on to the next middleware in the stack
-    console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`); // http :// localhost:5000 /api/members
-    next();
-}
 app.use(logger); // use the logger middleware
 
 // app.get('/', (req, res) => {
